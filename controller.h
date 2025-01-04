@@ -222,23 +222,136 @@ void lab3()
 }
 void lab4()
 {
-    
+    string tablename="lw4/lab4.csv";
+    char n;
+    view.println("Input");
+    view.println("1 to load mytable.csv file");
+    view.println("2 to input a name of your file");
+    view.println("Another number to terminate");
+    cin>>n;
+    switch(n)
+    {
+        case '2':
+            view.println("Input a name of the table file ");
+            cin>>tablename;
+            tablename="lw4/"+tablename;
+        case '1':
+        {
+            table.load(tablename);
+            table.lab4();
+            // table=table.to_rang();
+            // view.print("");
+            // view.println(table.r_c());
+            // view.print("");
+            // view.println(table.t_c());
+
+
+            break;
+        }
+        default:
+            break;
+    }    
 }
 void lab5()
 {
-    
+    string tablename="lw5/mytable.csv";
+    char n;
+    view.println("Input");
+    view.println("1 to load mytable.csv file");
+    view.println("2 to input a name of your file");
+    view.println("Another number to terminate");
+    cin>>n;
+    switch(n)
+    {
+        case '2':
+            view.println("Input a name of the table file ");
+            cin>>tablename;
+            tablename="lw5/"+tablename;
+        case '1':
+        {
+            table.load(tablename);
+            table.lab5();
+
+            break;
+        }
+        default:
+            break;
+    }    
 }
 void lab6()
 {
-    
+        string tablename="lw6/mytable.csv";
+    char n;
+    view.println("Input");
+    view.println("1 to load mytable.csv file");
+    view.println("2 to input a name of your file");
+    view.println("Another number to terminate");
+    cin>>n;
+    switch(n)
+    {
+        case '2':
+            view.println("Input a name of the table file ");
+            cin>>tablename;
+            tablename="lw6/"+tablename;
+        case '1':
+        {
+            table.load(tablename);
+            table.lab6();
+            break;
+        }
+        default:
+            break;
+    }    
 }
 void lab7()
 {
-    
+    string tablename="lw7/mytable.csv";
+    char n;
+    view.println("Input");
+    view.println("1 to load mytable.csv file");
+    view.println("2 to input a name of your file");
+    view.println("Another number to terminate");
+    cin>>n;
+    switch(n)
+    {
+        case '2':
+            view.println("Input a name of the table file ");
+            cin>>tablename;
+            tablename="lw7/"+tablename;
+        case '1':
+        {
+            table.load(tablename);
+            table.lab7();
+            break;
+        }
+        default:
+            break;
+    }    
 }
 void lab8()
 {
-    
+    string tablename="lw8/mytable.csv";
+    char n;
+    view.println("Input");
+    view.println("1 to load mytable.csv file");
+    view.println("2 to input a name of your file");
+    view.println("Another number to terminate");
+    cin>>n;
+    switch(n)
+    {
+        case '2':
+            view.println("Input a name of the table file ");
+            cin>>tablename;
+            tablename="lw8/"+tablename;
+        case '1':
+        {
+            table.load(tablename);
+            table.lab8();
+            break;
+        }
+        default:
+            break;
+    }   
 }
 
 //Searching of the coefficients. -1 is an infinity 

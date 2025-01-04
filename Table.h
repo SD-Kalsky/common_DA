@@ -2,8 +2,7 @@
 #include <string>
 #include <fstream>
 #include <math.h>
-
-
+#include "matrix.h"
 using namespace std;
 
 class Table
@@ -418,6 +417,143 @@ public:
         return t;
     }
 //The third lab
+//The fourth lab
+    void lab4(){
+        double a,b, rxy, rxy2, aprox, s1, s2, s3, s4, s5;
+        int i, j;
+        s1=this->sum_column(0);
+        s2=this->sum_column(1);
+        s3=0; s4=0; s5=0; aprox=0;
+        i=0;
+        while(i<this->strings){
+            s3+=(this->cells[0][i]*this->cells[1][i]);
+            s4+=(this->cells[0][i]*this->cells[0][i]);
+            s5+=(this->cells[1][i]*this->cells[1][i]);
+            i++;
+        }
+        b=(s3*this->strings-s1*s2)/(s4*this->strings-s1*s1);
+        a=this->arithmetic_mean_column(1)-b*this->arithmetic_mean_column(0);
+        i=0;
+        while(i<this->strings){
+            aprox+=abs((this->cells[1][i]-a-this->cells[0][i]*b)/this->cells[1][i]);
+            i++;
+        }
+        aprox/=this->strings;
+        rxy=(s3*this->strings-s1*s2)/(sqrt(s4*this->strings-s1*s1)*sqrt(s5*this->strings-s2*s2));
+        rxy2=rxy*rxy;
+
+        cout<<"a="<<a<<endl<<"b="<<b<<endl<<"Coefficient of correlation"<<rxy<<endl;
+        cout<<"Coefficient of determination is "<<rxy2<<endl<<aprox<<endl;
+        
+    }
+//The fourth lab
+void lab5(){
+        double x1, x2,y, s1, s2, s3, z1, z2, z3;
+        int i, j;
+        y=this->arithmetic_mean_column(0);
+        x1=this->arithmetic_mean_column(1);
+        x2=this->arithmetic_mean_column(2);
+        i=0; s1=0; s2=0; s3=0;
+        while(i<this->strings){
+            s1+=(this->cells[0][i]-y);
+            s2+=(this->cells[1][i]-x1);
+            s3+=(this->cells[2][i]-x2);
+            i++;
+        }
+        s1/=this->strings;
+        s2/=this->strings;
+        s3/=this->strings;
+        cout<<"s1="<<s1<<"; s2="<<s2<<"; s3="<<s3<<endl;
+        i=0; z1=0; z2=0; z3=0;
+        while(i<this->strings){
+            z1+=(this->cells[0][i]-y)/s1;
+            z2+=(this->cells[1][i]-x1)/s2;
+            z3+=(this->cells[2][i]-x2)/s3;
+            i++;
+        }
+        cout<<"z1="<<z1<<"; z2="<<z2<<"; z3="<<z3<<endl;
+    }
+void lab6(){
+    this->to_rang();
+    double a,b, rxy, rxy2, s1, s2, s3, s4;
+    int i, j;
+    s1=this->sum_column(0);
+    s2=this->sum_column(1);
+    i=0;
+    while(i<this->strings){
+        s3+=(this->cells[0][i]*this->cells[1][i]);
+        s4+=(this->cells[0][i]*this->cells[0][i]);
+        i++;
+    }
+    b=(s3*this->strings-s1*s2)/(s4*this->strings-s1*s1);
+    a=this->arithmetic_mean_column(1)-b*this->arithmetic_mean_column(0);
+    s3=0; s4=0;
+    i=0; double* yx=new double[this->strings];
+    while(i<this->strings){
+        yx[i]=a+b*this->cells[0][i];
+        cout<<"error_i is "<<this->cells[1][i]-yx[i]<<endl;
+        s3+=abs((this->cells[1][i]-yx[i])/cells[1][i]);
+        i++;
+    }
+    cout<<"common error is "<<s3*100<<"%";
+
+}
+void lab7(){
+    this->to_rang();
+    double a,b, rxy, rxy2, s1, s2, s3, s4;
+    int i, j;
+    s1=this->sum_column(0);
+    s2=this->sum_column(1);
+    i=0;
+    while(i<this->strings){
+        s3+=this->cells[0][i]*this->cells[1][i];
+        s4+=this->cells[0][i]*this->cells[0][i];
+        i++;
+    }
+    b=(s3*this->strings-s1*s2)/(s4*this->strings-s1*s1);
+    a=this->arithmetic_mean_column(1)-b*this->arithmetic_mean_column(0);
+    s3=0; s4=0;
+    i=0; double* yx=new double[this->strings];
+    while(i<this->strings){
+        yx[i]=a+b*this->cells[0][i];
+        cout<<"error_i is "<<this->cells[1][i]-yx[i]<<endl;
+        s3+=(this->cells[1][i]-yx[i]);
+        i++;
+    }
+    cout<<"mean error is "<<s3/this->strings<<endl;
+}
+void lab8(){
+    this->to_rang();
+    double a, b, m, rxy, rxy2, s1, s2, s3=0, s4;
+    int i, j;
+    matrix m1(this->columns, this->strings), m2(this->columns, this->strings);
+    j=1;
+    while(j<this->columns){
+        s1=this->sum_column(0);
+        s2=this->sum_column(1);
+        s3=0; s4=0;
+        m=this->arithmetic_mean_column(j);
+        i=0; 
+        while(i<this->strings){
+            s3+=((cells[j][i]-m)*(cells[j][i]-m));
+            i++;
+        }
+        s3/=this->strings;
+        i=0; 
+        while(i<this->strings){
+            m1.set(j, i, cells[j][i]/s3);
+            i++;
+        }
+        j++;
+    }
+    m2=m1;
+    m2.trans();
+    matrix m3=m1*m2;
+    m3=(m3*(1/this->strings));
+    cout<<m3;
+}
+
+
 
 //The load-save functions
     void save_csv(string tablename)

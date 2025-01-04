@@ -4,12 +4,17 @@ using namespace std;
 class View
 {
 private:
-    int type=0;//Среды вывода - 0 - терминал
+    int type=0;//Среды вывода - 0 - терминал, 1 - бот и терминал
+    
 public:
 View()
-{type=0;}
+{
+    type=0;
+}
 View(int n)
-{type=n;}
+{
+    type=n;
+}
 
 template<typename T> void print(T a)
 {
@@ -45,11 +50,8 @@ void menu()
     println("1 to open the 1st lab work"); 
     println("2 to open the 2nd lab work");
     println("3 to open the 3rd lab work");
-    println("4 to open the 3rd lab work");
-    println("5 to open the 3rd lab work");
-    println("6 to open the 3rd lab work");
-    println("7 to open the 3rd lab work");
-    println("8 to open the 3rd lab work");
+    println("");
+
     println("Another number to terminate");
 }
 
